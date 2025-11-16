@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Simple Website</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 40px;
+      background: #f5f5f5;
+      color: #333;
+    }
+    .box {
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      max-width: 500px;
+      margin: auto;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <h1>hail skitty</h1>
+    <p>click anywhere... if you dare 😼</p>
+  </div>
+
+  <script>
+    // Simple meow sound (tiny base64 audio)
+    const meow = new Audio("data:audio/mp3;base64,//uQxAAAAAAAAAAAAAAAAAAAAAAAWGluZwAAAA8AAAACAAACcQCAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAf/7kMQAAACoAAAAgAAAAEAAACAgICAgICAgICAgICAgICAgP//Z");
+
+    document.addEventListener('click', (e) => {
+      // create cat element
+      const cat = document.createElement('div');
+      cat.textContent = '🐱';
+      cat.style.position = 'absolute';
+      cat.style.left = e.pageX + 'px';
+      cat.style.top = e.pageY + 'px';
+      cat.style.fontSize = '40px';
+      cat.style.pointerEvents = 'none';
+      cat.style.transition = 'opacity 0.2s';
+      document.body.appendChild(cat);
+
+      // play meow
+      meow.currentTime = 0;
+      meow.play().catch(()=>{});
+
+      // fade and remove
+      setTimeout(() => {
+        cat.style.opacity = '0';
+        setTimeout(() => cat.remove(), 200);
+      }, 150);
+    });
+  </script>
+</body>
+</html>
