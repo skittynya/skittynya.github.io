@@ -1,76 +1,57 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Hail Skitty</title>
+<title>Cat or Gold Ship Clicker</title>
 <style>
     body {
-        margin: 0;
-        height: 100vh;
-        background: #111;
-        color: white;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        font-size: 50px;
+        font-family: Arial, sans-serif;
+        text-align: center;
+        margin-top: 80px;
+    }
+    .big {
+        font-size: 120px;
         cursor: pointer;
-        user-select: none;
     }
-    .spawn {
-        position: absolute;
-        pointer-events: none;
-        animation: fadeOut 0.6s forwards;
-        font-size: 60px;
-    }
-    .spawn img {
-        width: 90px;
-        height: auto;
-    }
-    @keyframes fadeOut {
-        0% { opacity: 1; transform: scale(1); }
-        100% { opacity: 0; transform: scale(0.5); }
+    #result {
+        margin-top: 30px;
+        font-size: 30px;
     }
 </style>
 </head>
 <body>
 
-HAIL SKITTY 😼🔥
+<h1>Click the Cat!</h1>
 
-<audio id="yamete" src="https://cdn.pixabay.com/download/audio/2022/03/10/audio_6c143e6b57.mp3?filename=anime-girl-stop-11284.mp3"></audio>
+<div id="clickArea" class="big">🐱</div>
+
+<div id="result"></div>
 
 <script>
+// Yamete sound (no upload needed)
+const yamateSound = new Audio("https://cdn.pixabay.com/audio/2022/03/15/audio_7e57c3fa19.mp3");
 
-// <-- CHANGE THIS TO YOUR GITHUB RAW LINK AFTER YOU UPLOAD -->
-const goldShipURL = "goldship.png"; 
+// Gold Ship reaction sound (funny anime sound)
+const goldShipSound = new Audio("https://cdn.pixabay.com/audio/2022/03/09/audio_c3b3927a41.mp3");
 
-document.body.addEventListener("click", (e) => {
+// When user clicks the cat
+document.getElementById("clickArea").onclick = function () {
 
-    // 1/10 chance for Gold Ship
-    const isGoldShip = Math.random() < 0.1;
+    let roll = Math.floor(Math.random() * 10) + 1; // 1 to 10
 
-    const el = document.createElement("div");
-    el.className = "spawn";
-    el.style.left = e.clientX + "px";
-    el.style.top = e.clientY + "px";
-
-    if (isGoldShip) {
-        // Gold Ship appears RARELY
-        const img = document.createElement("img");
-        img.src = goldShipURL;
-        el.appendChild(img);
-
-        // play yamete sound
-        const s = document.getElementById("yamete");
-        s.currentTime = 0;
-        s.play().catch(()=>{});
-
+    if (roll === 1) {
+        // Rare Gold Ship 1/10 chance
+        document.getElementById("clickArea").innerHTML = "🐴✨";
+        document.getElementById("result").innerHTML = "GOLD SHIP APPEARED!!!";
+        goldShipSound.currentTime = 0;
+        goldShipSound.play();
     } else {
-        // Normal cat emoji
-        el.textContent = "😺";
+        // Normal cat
+        document.getElementById("clickArea").innerHTML = "🐱";
+        document.getElementById("result").innerHTML = "yameteeee~";
+        yamateSound.currentTime = 0;
+        yamateSound.play();
     }
-
-    document.body.appendChild(el);
-    setTimeout(() => el.remove(), 600);
-});
+};
 </script>
 
 </body>
