@@ -18,7 +18,7 @@
         font-weight: bold;
     }
     .goldship {
-        width: 180px;
+        width: 200px;
         height: auto;
         margin-top: 20px;
     }
@@ -26,7 +26,7 @@
 </head>
 <body>
 
-<h1>Hail Skitty 😼🪄</h1>
+<h1>Hail Skitty 😼✨</h1>
 
 <div id="clicker" class="clicker">🐱</div>
 
@@ -34,14 +34,11 @@
 <div id="goldShipContainer"></div>
 
 <script>
-// SOUND 1 – Yamete (online source)
-const yameteSound = new Audio("https://cdn.pixabay.com/audio/2022/03/15/audio_7e57c3fa19.mp3");
+// Cute meow sound (online, works 100%)
+const meowSound = new Audio("https://cdn.pixabay.com/audio/2023/03/05/audio_b6a3f6b73c.mp3");
 
-// SOUND 2 – Funny Gold Ship voice
+// Gold Ship funny sound (still works)
 const goldShipSound = new Audio("https://cdn.pixabay.com/audio/2022/03/09/audio_c3b3927a41.mp3");
-
-// Gold Ship Image (no upload needed)
-const goldShipImageURL = "https://i.imgur.com/rQkZXiD.png";
 
 document.getElementById("clicker").onclick = function () {
 
@@ -50,11 +47,11 @@ document.getElementById("clicker").onclick = function () {
     if (roll === 1) {
         // ---- RARE GOLD SHIP ----
         document.getElementById("clicker").innerHTML = "🐴✨";
-        document.getElementById("result").innerHTML = "GOLD SHIP HAS ARRIVED!!!";
+        document.getElementById("result").innerHTML = "GOLD SHIP APPEARED!!!";
 
-        // Add image
+        // Use YOUR uploaded file goldship.png
         document.getElementById("goldShipContainer").innerHTML =
-            `<img src="${goldShipImageURL}" class="goldship">`;
+            `<img src="goldship.png" class="goldship">`;
 
         goldShipSound.currentTime = 0;
         goldShipSound.play();
@@ -62,15 +59,14 @@ document.getElementById("clicker").onclick = function () {
     } else {
         // ---- NORMAL CAT ----
         document.getElementById("clicker").innerHTML = "🐱";
-        document.getElementById("result").innerHTML = "yameteeee~";
+        document.getElementById("result").innerHTML = "Meow~ 💖";
         document.getElementById("goldShipContainer").innerHTML = "";
 
-        yameteSound.currentTime = 0;
-        yameteSound.play();
+        meowSound.currentTime = 0;
+        meowSound.play();
     }
 };
 </script>
 
 </body>
 </html>
-
