@@ -1,60 +1,78 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>My Simple Website</title>
-  <style>
+<title>Hail Skitty</title>
+<style>
     body {
-      font-family: Arial, sans-serif;
-      padding: 40px;
-      background: #f5f5f5;
-      color: #333;
+        margin: 0;
+        height: 100vh;
+        background: #111;
+        color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 50px;
+        cursor: pointer;
+        user-select: none;
     }
-    .box {
-      background: white;
-      padding: 20px;
-      border-radius: 12px;
-      max-width: 500px;
-      margin: auto;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    .spawn {
+        position: absolute;
+        pointer-events: none;
+        animation: fadeOut 0.6s forwards;
+        font-size: 60px;
     }
-  </style>
+    .spawn img {
+        width: 90px;
+        height: auto;
+    }
+    @keyframes fadeOut {
+        0% { opacity: 1; transform: scale(1); }
+        100% { opacity: 0; transform: scale(0.5); }
+    }
+</style>
 </head>
 <body>
-  <div class="box">
-    <h1>hail skitty</h1>
-    <p>click anywhere... if you dare 😼</p>
-  </div>
 
-  <script>
-    // Simple meow sound (tiny base64 audio)
-    // Loud meow sound
-    const meow = new Audio("https://www.myinstants.com/media/sounds/anime-wow-sound-effect.mp3");
+HAIL SKITTY 😼🔥
 
-    document.addEventListener('click', (e) => {
-      // create cat element
-      const cat = document.createElement('div');
-      cat.textContent = '🐱';
-      cat.style.position = 'absolute';
-      cat.style.left = e.pageX + 'px';
-      cat.style.top = e.pageY + 'px';
-      cat.style.fontSize = '40px';
-      cat.style.pointerEvents = 'none';
-      cat.style.transition = 'opacity 0.2s';
-      document.body.appendChild(cat);
+<audio id="yamete" src="https://cdn.pixabay.com/download/audio/2022/03/10/audio_6c143e6b57.mp3?filename=anime-girl-stop-11284.mp3"></audio>
 
-      // play meow
-      meow.currentTime = 0;
-      meow.play().catch(()=>{});
+<script>
 
-      // fade and remove
-      setTimeout(() => {
-        cat.style.opacity = '0';
-        setTimeout(() => cat.remove(), 200);
-      }, 150);
-    });
-  </script>
+// <-- CHANGE THIS TO YOUR GITHUB RAW LINK AFTER YOU UPLOAD -->
+const goldShipURL = "goldship.png"; 
+
+document.body.addEventListener("click", (e) => {
+
+    // 1/10 chance for Gold Ship
+    const isGoldShip = Math.random() < 0.1;
+
+    const el = document.createElement("div");
+    el.className = "spawn";
+    el.style.left = e.clientX + "px";
+    el.style.top = e.clientY + "px";
+
+    if (isGoldShip) {
+        // Gold Ship appears RARELY
+        const img = document.createElement("img");
+        img.src = goldShipURL;
+        el.appendChild(img);
+
+        // play yamete sound
+        const s = document.getElementById("yamete");
+        s.currentTime = 0;
+        s.play().catch(()=>{});
+
+    } else {
+        // Normal cat emoji
+        el.textContent = "😺";
+    }
+
+    document.body.appendChild(el);
+    setTimeout(() => el.remove(), 600);
+});
+</script>
+
 </body>
 </html>
 
