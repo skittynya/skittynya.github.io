@@ -1,55 +1,72 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Cat or Gold Ship Clicker</title>
+<title>Hail Skitty</title>
 <style>
     body {
         font-family: Arial, sans-serif;
         text-align: center;
-        margin-top: 80px;
+        margin-top: 60px;
     }
-    .big {
-        font-size: 120px;
+    .clicker {
+        font-size: 130px;
         cursor: pointer;
     }
     #result {
-        margin-top: 30px;
-        font-size: 30px;
+        margin-top: 25px;
+        font-size: 32px;
+        font-weight: bold;
+    }
+    .goldship {
+        width: 180px;
+        height: auto;
+        margin-top: 20px;
     }
 </style>
 </head>
 <body>
 
-<h1>Click the Cat!</h1>
+<h1>Hail Skitty 😼🪄</h1>
 
-<div id="clickArea" class="big">🐱</div>
+<div id="clicker" class="clicker">🐱</div>
 
 <div id="result"></div>
+<div id="goldShipContainer"></div>
 
 <script>
-// Yamete sound (no upload needed)
-const yamateSound = new Audio("https://cdn.pixabay.com/audio/2022/03/15/audio_7e57c3fa19.mp3");
+// SOUND 1 – Yamete (online source)
+const yameteSound = new Audio("https://cdn.pixabay.com/audio/2022/03/15/audio_7e57c3fa19.mp3");
 
-// Gold Ship reaction sound (funny anime sound)
+// SOUND 2 – Funny Gold Ship voice
 const goldShipSound = new Audio("https://cdn.pixabay.com/audio/2022/03/09/audio_c3b3927a41.mp3");
 
-// When user clicks the cat
-document.getElementById("clickArea").onclick = function () {
+// Gold Ship Image (no upload needed)
+const goldShipImageURL = "https://i.imgur.com/rQkZXiD.png";
 
-    let roll = Math.floor(Math.random() * 10) + 1; // 1 to 10
+document.getElementById("clicker").onclick = function () {
+
+    let roll = Math.floor(Math.random() * 10) + 1; // 1–10
 
     if (roll === 1) {
-        // Rare Gold Ship 1/10 chance
-        document.getElementById("clickArea").innerHTML = "🐴✨";
-        document.getElementById("result").innerHTML = "GOLD SHIP APPEARED!!!";
+        // ---- RARE GOLD SHIP ----
+        document.getElementById("clicker").innerHTML = "🐴✨";
+        document.getElementById("result").innerHTML = "GOLD SHIP HAS ARRIVED!!!";
+
+        // Add image
+        document.getElementById("goldShipContainer").innerHTML =
+            `<img src="${goldShipImageURL}" class="goldship">`;
+
         goldShipSound.currentTime = 0;
         goldShipSound.play();
+
     } else {
-        // Normal cat
-        document.getElementById("clickArea").innerHTML = "🐱";
+        // ---- NORMAL CAT ----
+        document.getElementById("clicker").innerHTML = "🐱";
         document.getElementById("result").innerHTML = "yameteeee~";
-        yamateSound.currentTime = 0;
-        yamateSound.play();
+        document.getElementById("goldShipContainer").innerHTML = "";
+
+        yameteSound.currentTime = 0;
+        yameteSound.play();
     }
 };
 </script>
